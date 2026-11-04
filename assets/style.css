@@ -128,9 +128,14 @@ h2 small{font-size:14px;color:var(--muted);margin-left:12px;font-weight:400}
 .page-body .note{margin-top:30px}
 
 /* bio */
-.bio-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+.bio-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:start}
 .bio{margin:0;background:#fff;border:1px solid var(--line);padding:24px 28px}
 .bio dt{font-size:12px;letter-spacing:.08em;color:var(--muted);margin:14px 0 4px}
 .bio dt:first-child{margin-top:0}
 .bio dd{margin:0;font-size:16px;line-height:1.7}
 @media (max-width:720px){.bio-grid{grid-template-columns:1fr;gap:20px}}
+
+.bio-fields{margin-top:24px;border-top:1px solid var(--line);padding-top:16px}
+.bio-fields dt{font-size:12px;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+.bio-fields p{margin:0;font-size:16px}
+.bio dd{font-size:15px}
