@@ -42,7 +42,7 @@ a:hover{color:var(--accent)}
 .hero p{margin:0 0 12px;color:#d9dde8;font-size:17px}
 .hero .fields{margin-top:22px;font-size:14px;color:#aeb6cc;letter-spacing:.04em}
 .hero .fields span{margin-right:14px}
-.hero .photo{width:220px;height:260px;background:#2b3756;border:1px solid #3e4b6d;display:flex;align-items:center;justify-content:center;color:#8e98b3;font-size:13px;text-align:center;padding:12px}
+.hero .photo{width:220px;height:260px;object-fit:cover;object-position:top;border:1px solid #3e4b6d;display:block}
 
 /* sections */
 section{padding:56px 0}
