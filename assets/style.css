@@ -118,3 +118,11 @@ h2 small{font-size:14px;color:var(--muted);margin-left:12px;font-weight:400}
 .article th,.article td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
 .article th{background:var(--paper-2);font-weight:700}
 .article ol,.article ul{padding-left:22px}
+
+/* static page body */
+.page-body{max-width:760px}
+.page-body h2{font-size:24px;margin:0 0 8px}
+.page-body h3{font-size:19px;margin:40px 0 12px;padding-top:8px;border-top:1px solid var(--line)}
+.page-body h4{font-size:17px;margin:26px 0 6px;color:var(--navy)}
+.page-body p{margin:0 0 14px}
+.page-body .note{margin-top:30px}

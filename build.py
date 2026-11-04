@@ -33,6 +33,7 @@ HEAD = """<!doctype html>
     <nav class="nav">
       <a href="/"{on_home}>소개</a>
       <a href="/columns/"{on_col}>칼럼</a>
+      <a href="/cases.html"{on_cases}>해결 사례</a>
       <a href="/contact.html" class="cta{on_contact}">상담 안내</a>
     </nav>
   </div>
@@ -96,7 +97,7 @@ def render_post(p):
         meta_line += f" · 갱신 {kdate(p['updated'])}"
     orig = f'<br>원문은 <a href="{p["original"]}" target="_blank" rel="noopener">네이버 블로그</a>에 {kdate(p["date"])} 처음 올렸고, 이 글은 현행 법령·판례에 맞게 고쳐 쓴 것입니다.' if p.get("original") else ""
     out = HEAD.format(title=html.escape(p["title"]), desc=html.escape(p["summary"]), url=url, ld=ld,
-                      on_home="", on_col=' class="on"', on_contact="")
+                      on_home="", on_col=' class="on"', on_cases="", on_contact="")
     out += f"""<article class="article">
   <div class="meta">{meta_line}</div>
   <h1>{html.escape(p['title'])}</h1>
@@ -117,7 +118,18 @@ def li(p):
       </li>
 """
 
+def render_page(mdfile, slug, title, desc, nav):
+    p = parse(mdfile)
+    body_html = markdown.markdown(p["body"], extensions=["tables"])
+    url = f"{SITE}/{slug}.html"
+    on = {"on_home":"", "on_col":"", "on_cases":"", "on_contact":""}
+    on[nav] = ' class="on"'
+    out = HEAD.format(title=html.escape(title), desc=html.escape(desc), url=url, ld="{}", **on)
+    out += f'<section>\n  <div class="wrap page-body">\n{body_html}\n  </div>\n</section>\n' + FOOT
+    open(os.path.join(ROOT, slug + ".html"), "w", encoding="utf-8").write(out)
+
 def main():
+    render_page(os.path.join(ROOT, "pages", "cases.md"), "cases", "해결 사례", "이동규 변호사가 직접 맡아 처리한 형사·민사·부동산·교통사고 사건의 해결 사례.", "on_cases")
     posts = [parse(f) for f in glob.glob(os.path.join(SRC, "*.md"))]
     posts.sort(key=lambda p: (p.get("updated", p["date"]), p["date"]), reverse=True)
     urls = [render_post(p) for p in posts]
@@ -127,7 +139,7 @@ def main():
     for p in posts:
         cats.setdefault(p["category"], []).append(p)
     idx = HEAD.format(title="칼럼", desc="이동규 변호사가 직접 쓴 형사, 교통사고·보험, 부동산 법률 칼럼.",
-                      url=SITE + "/columns/", ld="{}", on_home="", on_col=' class="on"', on_contact="")
+                      url=SITE + "/columns/", ld="{}", on_home="", on_col=' class="on"', on_cases="", on_contact="")
     idx += '<section>\n  <div class="wrap">\n    <h2>칼럼 <small>형사 · 교통사고·보험 · 부동산 · 기업자문</small></h2>\n    <ul class="post-list">\n'
     idx += "".join(li(p) for p in posts)
     idx += "    </ul>\n  </div>\n</section>\n" + FOOT
@@ -142,7 +154,7 @@ def main():
     # sitemap
     today = datetime.date.today().isoformat()
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for u, lm in [(SITE + "/", today), (SITE + "/columns/", today), (SITE + "/contact.html", today)] + \
+    for u, lm in [(SITE + "/", today), (SITE + "/columns/", today), (SITE + "/contact.html", today), (SITE + "/cases.html", today)] + \
                  [(u, p.get("updated", p["date"])) for u, p in zip(urls, posts)]:
         sm.append(f"  <url><loc>{u}</loc><lastmod>{lm}</lastmod></url>")
     sm.append("</urlset>")
