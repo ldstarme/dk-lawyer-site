@@ -109,3 +109,12 @@ h2 small{font-size:14px;color:var(--muted);margin-left:12px;font-weight:400}
   .post-list li{grid-template-columns:1fr;gap:4px}
   section{padding:40px 0}
 }
+
+/* article extras */
+.article blockquote{margin:18px 0;padding:14px 20px;background:var(--paper-2);border-left:3px solid var(--accent);font-size:15px;color:var(--ink-soft)}
+.article blockquote p{margin:0 0 8px}
+.article blockquote p:last-child{margin:0}
+.article table{border-collapse:collapse;width:100%;margin:18px 0;font-size:15px}
+.article th,.article td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+.article th{background:var(--paper-2);font-weight:700}
+.article ol,.article ul{padding-left:22px}
