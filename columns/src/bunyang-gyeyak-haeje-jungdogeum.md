@@ -1,5 +1,5 @@
 ---
-title: 분양계약, 중도금을 내기 전이라면 계약금을 포기하고 해제할 수 있습니다
+title: 분양계약 해지, 중도금을 내기 전이라면 계약금 포기로 가능합니다 : 민법 제565조 해약금 해제
 slug: bunyang-gyeyak-haeje-jungdogeum
 date: 2023-04-18
 updated: 2026-11-04
